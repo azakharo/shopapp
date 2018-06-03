@@ -2,8 +2,8 @@ div(ng-include='"components/navbar/navbar.html"')
 
 header#banner.hero-unit
   .container
-    h1 'Allo, 'Allo!
-    p.lead Kick-start your next web app with Angular Fullstack
+    h1 Welcome to our new shop!
+    p.lead Here you can find all you need!
     img#banner__img(src='assets/images/yeoman.png', alt='I\'m Yeoman')
 
 .container
@@ -22,7 +22,3 @@ header#banner.hero-unit
       input.form-control(type='text', placeholder='Add a new thing here.', ng-model='newThing')
       span.input-group-btn
         button.btn.btn-primary.btn-add-new(type='submit', ng-click='addThing()') Add New
-
-footer.footer
-  .container
-    p WebStarter version: {{ appVer }}

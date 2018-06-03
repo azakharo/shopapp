@@ -3,7 +3,7 @@
 angular.module('projectsApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [{
-      'title': 'Home',
+      'title': 'Product List',
       'link': '/'
     }];
 
