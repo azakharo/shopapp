@@ -2,15 +2,17 @@
 
 angular.module('projectsApp')
   .factory('User', function ($http, $q) {
-    const BASE_PATH = '/api/users';
+    var BASE_PATH = '/api/users';
 
     return {
 
       get: function () {
-        const deffered = $q.defer();
+        var deffered = $q.defer();
 
-        $http.get(`${BASE_PATH}/me`).then(
-          resp => deffered.resolve(resp.data),
+        $http.get(BASE_PATH + '/me').then(
+          function (resp) {
+            deffered.resolve(resp.data);
+          },
           function (resp) {
             log(resp.data); // jshint ignore:line
             deffered.resolve(null);
@@ -21,10 +23,12 @@ angular.module('projectsApp')
       },
 
       getAll: function () {
-        const deffered = $q.defer();
+        var deffered = $q.defer();
 
-        $http.get(`${BASE_PATH}/`).then(
-          resp => deffered.resolve(resp.data),
+        $http.get(BASE_PATH + '/').then(
+          function (resp) {
+            deffered.resolve(resp.data);
+          },
           function (resp) {
             log(resp.data); // jshint ignore:line
             deffered.resolve(null);
@@ -35,17 +39,19 @@ angular.module('projectsApp')
       },
 
       changePassword: function (userID, oldPass, newPass) {
-        const deffered = $q.defer();
+        var deffered = $q.defer();
 
         $http({
           method: 'put',
-          url: `${BASE_PATH}/${userID}/password`,
+          url: BASE_PATH + '/' + userID + '/password',
           data: {
             oldPassword: oldPass,
             newPassword: newPass
           }
         }).then(
-          () => deffered.resolve(),
+          function () {
+            deffered.resolve();
+          },
           function (resp) {
             log(resp.data); // jshint ignore:line
             deffered.reject();
@@ -56,14 +62,17 @@ angular.module('projectsApp')
       },
 
       create: function (data) {
-        const deffered = $q.defer();
+        var deffered = $q.defer();
 
         $http({
           method: 'post',
-          url: `${BASE_PATH}/`,
+          url: BASE_PATH + '/',
           data: data
         }).then(
-          resp => deffered.resolve(resp.data), // return token
+          function () {
+            // return token
+            deffered.resolve(resp.data);
+          },
           function (resp) {
             log(resp.data); // jshint ignore:line
             deffered.reject(resp.data);
@@ -74,13 +83,15 @@ angular.module('projectsApp')
       },
 
       delete: function (userID) {
-        const deffered = $q.defer();
+        var deffered = $q.defer();
 
         $http({
           method: 'delete',
-          url: `${BASE_PATH}/${userID}`
+          url: BASE_PATH + '/' + userID
         }).then(
-          () => deffered.resolve(),
+          function () {
+            deffered.resolve()
+          },
           function (resp) {
             log(resp.data); // jshint ignore:line
             deffered.reject();

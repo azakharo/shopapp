@@ -4,7 +4,9 @@ angular.module('projectsApp')
   .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q) {
     var currentUser = {};
     if ($cookieStore.get('token')) {
-      User.get().then(user => currentUser = user);
+      User.get().then(function(user) {
+        currentUser = user;
+      });
     }
 
     /**

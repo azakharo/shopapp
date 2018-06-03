@@ -1,24 +1,18 @@
-div(ng-include='"components/navbar/navbar.html"')
+.main-container.vh100.w100
 
-.mybanner.hero-unit
-  .container
-    h1 Welcome to our new shop!
-    p.lead Here you can find all you need!
-    img.banner-img(src='assets/images/yeoman.png', alt='I am Yeoman')
+  .my-navbar(ng-include='"components/navbar/navbar.html"')
 
-.container
-  .row
-    .col-lg-12
-      h1.page-header Features:
-      ul.nav.nav-tabs.nav-stacked.col-md-4.col-lg-4.col-sm-6(ng-repeat='thing in awesomeThings')
-        li
-          a.item-link(href='#', tooltip='{{thing.info}}')
-            | {{thing.name}}
-            button.close(type='button', ng-click='deleteThing(thing)') ×
+  .my-banner.hero-unit
+    .container
+      h1 Welcome to our new shop!
+      p.lead Here you can find all you need!
+      img.banner-img(src='assets/images/yeoman.png', alt='I am Yeoman')
 
-  form.thing-form
-    label Syncs in realtime across clients
-    p.input-group
-      input.form-control(type='text', placeholder='Add a new thing here.', ng-model='newThing')
-      span.input-group-btn
-        button.btn.btn-primary.btn-add-new(type='submit', ng-click='addThing()') Add New
+  .filter-section.p1
+    .panel.panel-default
+      .panel-heading Panel heading without title
+      .panel-body
+        Panel content
+
+  .product-list-section.p1
+    div ha-bly-bly
