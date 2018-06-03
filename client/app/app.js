@@ -69,4 +69,8 @@ angular.module('projectsApp', [
         }
       });
     });
+
+    if (!Auth.isLoggedIn()) {
+      $location.path('/login');
+    }
   });
