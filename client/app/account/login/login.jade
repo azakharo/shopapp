@@ -38,10 +38,10 @@ div(ng-include='"components/navbar/navbar.html"')
           p.help-block {{ requestError }}
 
         div
-          button.btn.btn-success.btn-lg.btn-login(type='submit', ng-disabled='form.$invalid')
+          button.btn.btn-success.btn-lg.btn-login(type='submit', ng-disabled='form.$invalid || requestError')
             | Login
           = ' '
           a.btn.btn-default.btn-lg.btn-register(href='/signup')
-            | Register
+            | Sign Up
 
         hr

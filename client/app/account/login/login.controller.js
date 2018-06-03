@@ -25,7 +25,4 @@ angular.module('projectsApp')
       $scope.requestError = null;
     };
 
-    $scope.loginOauth = function(provider) {
-      $window.location.href = '/auth/' + provider;
-    };
   });

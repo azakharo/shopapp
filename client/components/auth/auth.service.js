@@ -70,7 +70,6 @@ angular.module('projectsApp')
           });
         },
         function (err) {
-          logout();
           return cb(err, null);
         }
       );

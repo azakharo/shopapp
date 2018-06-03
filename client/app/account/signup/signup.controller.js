@@ -3,11 +3,9 @@
 angular.module('projectsApp')
   .controller('SignupCtrl', function ($scope, Auth, $location, $window) {
     $scope.user = {};
-    $scope.errors = {};
+    $scope.requestError = null;
 
     $scope.register = function (form) {
-      $scope.submitted = true;
-
       if (form.$valid) {
         Auth.createUser({
             name: $scope.user.name,
@@ -15,22 +13,10 @@ angular.module('projectsApp')
             password: $scope.user.password
           },
           function (err, user) {
-            /* jshint unused:false */
+            log(err);
+            log(user);
             if (err) {
-              if (typeof err === 'string') {
-                form.email.$setValidity('mongoose', false);
-                $scope.errors.email = err;
-              }
-              else {
-                err = err.data;
-                $scope.errors = {};
-
-                // Update validity of form fields that match the mongoose errors
-                angular.forEach(err.errors, function (error, field) {
-                  form[field].$setValidity('mongoose', false);
-                  $scope.errors[field] = error.message;
-                });
-              }
+              $scope.requestError = err;
             }
             else {
               // Account created, redirect to home
@@ -41,7 +27,8 @@ angular.module('projectsApp')
       }
     };
 
-    $scope.loginOauth = function (provider) {
-      $window.location.href = '/auth/' + provider;
+    $scope.onFormChange = function() {
+      $scope.requestError = null;
     };
+
   });
