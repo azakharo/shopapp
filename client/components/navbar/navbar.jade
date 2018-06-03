@@ -27,11 +27,7 @@ nav.navbar.navbar-default(ng-controller='NavbarCtrl')
           a(href='/login') Login
 
         li(ng-show='isLoggedIn()')
-          p.navbar-text Hello {{ getCurrentUser().name }}
-
-        li(ng-show='isLoggedIn() && getCurrentUser().provider === "local"', ng-class='{active: isActive("/settings")}')
-          a(href='/settings')
-            span.fa.fa-cog
+          p.navbar-text.bold {{ getCurrentUser().name }}
 
         li(ng-show='isLoggedIn()', ng-class='{active: isActive("/logout")}')
           a.btn-logout(href='', ng-click='logout()') Logout
