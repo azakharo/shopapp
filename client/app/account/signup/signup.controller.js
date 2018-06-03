@@ -4,6 +4,7 @@ angular.module('projectsApp')
   .controller('SignupCtrl', function ($scope, Auth, $location, $window) {
     $scope.user = {};
     $scope.requestError = null;
+    $scope.passwordConfirm = "";
 
     $scope.register = function (form) {
       if (form.$valid) {
@@ -12,9 +13,7 @@ angular.module('projectsApp')
             email: $scope.user.email,
             password: $scope.user.password
           },
-          function (err, user) {
-            log(err);
-            log(user);
+          function (err) {
             if (err) {
               $scope.requestError = err;
             }
@@ -29,6 +28,14 @@ angular.module('projectsApp')
 
     $scope.onFormChange = function() {
       $scope.requestError = null;
+    };
+
+
+    $scope.onPasswordConfirmChange = function () {
+      $scope.onFormChange();
+
+      $scope.form.passwordConfirm.$setValidity('match',
+        $scope.form.password.$modelValue === $scope.form.passwordConfirm.$modelValue);
     };
 
   });

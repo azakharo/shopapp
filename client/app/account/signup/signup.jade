@@ -28,6 +28,15 @@ div(ng-include='"components/navbar/navbar.html"')
           p.help-block(ng-show='form.$dirty && (form.password.$error.minlength || form.password.$error.required)')
             | Please enter a password (at least 3 characters)
 
+        .form-group
+          label Confirm the password
+          input.form-control(type='password', name='passwordConfirm', ng-model='passwordConfirm', required='',
+          ng-change='onPasswordConfirmChange()')
+          p.help-block(ng-show='form.$dirty && form.passwordConfirm.$error.required')
+            | Please confirm the password
+          p.help-block(ng-show='form.$dirty && form.passwordConfirm.$error.match')
+            | Passwords mismatch
+
         .form-group.has-error(ng-show="requestError")
           p.help-block {{ requestError }}
 
