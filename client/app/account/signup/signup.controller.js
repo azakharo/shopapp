@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('projectsApp')
-  .controller('SignupCtrl', function ($scope, Auth, $location, $window) {
+  .controller('SignupCtrl', function ($scope, Auth, $location) {
     $scope.user = {};
     $scope.requestError = null;
-    $scope.passwordConfirm = "";
+    $scope.passwordConfirm = '';
 
     $scope.register = function (form) {
       if (form.$valid) {

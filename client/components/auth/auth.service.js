@@ -97,6 +97,13 @@ angular.module('projectsApp')
     }
 
     /**
+     * Get auth token
+     */
+    function getToken() {
+      return $cookieStore.get('token');
+    }
+
+    /**
      * Check if a user is logged in
      *
      * @return {Boolean}
@@ -124,15 +131,6 @@ angular.module('projectsApp')
     function isAdmin() {
       return currentUser.role === 'admin';
     }
-
-    /**
-     * Get auth token
-     */
-    /* jshint ignore:start */
-    function getToken() {
-      return $cookieStore.get('token');
-    }
-    /* jshint ignore:end */
 
     return {
       login:            login,
