@@ -20,7 +20,7 @@ exports.setup = function (User) {
           return done(null, false, { message: 'This email is not registered.' });
         }
         if (!user.authenticate(password)) {
-          return done(null, false, { message: 'This password is not correct.' });
+          return done(null, false, { message: 'The password is incorrect.' });
         }
         return done(null, user);
       });

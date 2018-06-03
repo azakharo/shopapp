@@ -2,16 +2,16 @@ div(ng-include='"components/navbar/navbar.html"')
 .container
   .row
     .col-sm-12
-      h1 Login
+      .text-xlarge.mb1 Login
       p
-        | Accounts are reset on server restart from
-        code server/config/seed.js
-        | . Default account is
+        | There are 2 predefined accounts:
+      p
+        | Guest account
         code test@test.com
         | /
         code test
       p
-        | Admin account is
+        | Admin account
         code admin@admin.com
         | /
         code admin
@@ -38,17 +38,3 @@ div(ng-include='"components/navbar/navbar.html"')
             | Register
 
         hr
-
-        div
-          a.btn.btn-facebook(href='', ng-click='loginOauth("facebook")')
-            i.fa.fa-facebook
-            |  Connect with Facebook
-          = ' '
-          a.btn.btn-google-plus(href='', ng-click='loginOauth("google")')
-            i.fa.fa-google-plus
-            |  Connect with Google+
-          = ' '
-          a.btn.btn-twitter(href='', ng-click='loginOauth("twitter")')
-            i.fa.fa-twitter
-            |  Connect with Twitter
-  hr

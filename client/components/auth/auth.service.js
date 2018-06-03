@@ -103,7 +103,7 @@ angular.module('projectsApp')
      * @return {Boolean}
      */
     function isLoggedIn() {
-      return currentUser.hasOwnProperty('role');
+      return !!getToken();
     }
 
     /**

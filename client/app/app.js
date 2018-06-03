@@ -13,7 +13,10 @@ angular.module('projectsApp', [
     $urlRouterProvider
       .otherwise('/');
 
-    $locationProvider.html5Mode(false);
+    $locationProvider.html5Mode({
+      enabled: true,
+      requireBase: true
+    });
     $httpProvider.interceptors.push('authInterceptor');
 
     // $http response, convert string to dates
