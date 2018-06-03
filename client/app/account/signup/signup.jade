@@ -9,7 +9,7 @@ div(ng-include='"components/navbar/navbar.html"')
           label Name
           input.form-control(type='text', name='name', ng-model='user.name', required='', autofocus='',
           ng-change='onFormChange()')
-          p.help-block(ng-show='form.$dirty && form.name.$error.required')
+          p.help-block(ng-show='form.name.$error.required')
             | Please enter a name
 
         .form-group
