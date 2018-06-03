@@ -3,11 +3,9 @@
 angular.module('projectsApp')
   .controller('LoginCtrl', function ($scope, Auth, $location, $window) {
     $scope.user = {};
-    $scope.errors = {};
+    $scope.requestError = null;
 
     $scope.login = function(form) {
-      $scope.submitted = true;
-
       if(form.$valid) {
         Auth.login({
           email: $scope.user.email,
@@ -18,9 +16,13 @@ angular.module('projectsApp')
           $location.path('/');
         })
         .catch( function(err) {
-          $scope.errors.other = err.message;
+          $scope.requestError = err.message;
         });
       }
+    };
+
+    $scope.onFormChange = function() {
+      $scope.requestError = null;
     };
 
     $scope.loginOauth = function(provider) {
