@@ -69,7 +69,7 @@ angular.module('projectsApp')
           url: BASE_PATH + '/',
           data: data
         }).then(
-          function () {
+          function (resp) {
             // return token
             deffered.resolve(resp.data);
           },
@@ -90,7 +90,7 @@ angular.module('projectsApp')
           url: BASE_PATH + '/' + userID
         }).then(
           function () {
-            deffered.resolve()
+            deffered.resolve();
           },
           function (resp) {
             log(resp.data); // jshint ignore:line

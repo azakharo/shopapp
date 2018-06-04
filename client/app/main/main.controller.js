@@ -1,29 +1,32 @@
 'use strict';
 
 angular.module('projectsApp')
-  .controller('MainCtrl', function ($scope, $http, socket) {
-    $scope.awesomeThings = [];
+  .controller('MainCtrl', function ($scope) {
+    ///////////////////////////////////////////////////////
+    // Filter
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-      socket.syncArray('thing', $scope.awesomeThings);
-    });
+    $scope.datepickerOpts = {
+      startingDay: 1,
+      showWeeks: false
+    };
+    $scope.datepickerInputFrmt = 'yyyy-MM-dd';
 
-    $scope.addThing = function() {
-      if($scope.newThing === '') {
-        return;
-      }
-      $http.post('/api/things', { name: $scope.newThing });
-      $scope.newThing = '';
+    // Date From
+    $scope.filterDtFrom = null;
+    $scope.isFilterDtFromOpened = false;
+    $scope.openFilterDtFrom = function () {
+      $scope.isFilterDtFromOpened = true;
     };
 
-    $scope.deleteThing = function(thing) {
-      $http.delete('/api/things/' + thing._id);
+    // Date To
+    $scope.filterDtTo = null;
+    $scope.isFilterDtToOpened = false;
+    $scope.openFilterDtTo = function () {
+      $scope.isFilterDtToOpened = true;
     };
 
-    $scope.$on('$destroy', function () {
-      socket.unsync('thing');
-    });
+    // Filter
+    ///////////////////////////////////////////////////////
 
-    $scope.appVer = APP_VERSION; // jshint ignore:line
+
   });

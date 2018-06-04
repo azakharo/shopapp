@@ -1,18 +1,50 @@
 .main-container.vh100.w100
 
+  // Navigation bar
   .my-navbar(ng-include='"components/navbar/navbar.html"')
 
+  // Banner
   .my-banner.hero-unit
     .container
       h1 Welcome to our new shop!
       p.lead Here you can find all you need!
       img.banner-img(src='assets/images/yeoman.png', alt='I am Yeoman')
 
+  // Filter section
   .filter-section.p1
     .panel.panel-default
-      .panel-heading Panel heading without title
+      .panel-heading Product list filter
       .panel-body
-        Panel content
+        // 1st line
+        .prod-filter-row
+          .prod-filter-col
+            // Date From
+            p.input-group.datepicker-group
+              input.form-control(type='text', uib-datepicker-popup='{{datepickerInputFrmt}}', ng-model='filterDtFrom',
+              is-open='isFilterDtFromOpened', datepicker-options='datepickerOpts')
+              span.input-group-btn
+                button.btn.btn-default(type='button', ng-click='openFilterDtFrom()')
+                  i.fa.fa-calendar
+          .prod-filter-col
+            // Date To
+            p.input-group.datepicker-group
+              input.form-control(type='text', uib-datepicker-popup='{{datepickerInputFrmt}}', ng-model='filterDtTo',
+              is-open='isFilterDtToOpened', datepicker-options='datepickerOpts')
+              span.input-group-btn
+                button.btn.btn-default(type='button', ng-click='openFilterDtTo()')
+                  i.fa.fa-calendar
+          .prod-filter-col
+            span ha-ha
 
+        // 2nd line
+        .prod-filter-row
+          .prod-filter-col
+            span ha-ha2
+          .prod-filter-col
+            span ha-ha2
+          .prod-filter-col
+            span ha-ha2
+
+  // Product list
   .product-list-section.p1
     div ha-bly-bly
