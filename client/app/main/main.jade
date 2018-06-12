@@ -10,9 +10,9 @@
       .banner-subtitle.mt1 Here you can find all you need!
 
   // Filter section
-  .filter-section.plr1.pt1
+  .filter-section.p1
     .panel.panel-default.filter-panel
-      .panel-heading Product list filter
+      .panel-heading.text-large Product List Filter
       .panel-body
         // 1st line
         .prod-filter-row
@@ -56,5 +56,17 @@
             ng-options='opt.name for opt in colorOptions')
 
   // Product list
-  .product-list-section.p1
-    div ha-bly-bly
+  .product-list-section.p1(ng-show="products && products.length > 0")
+    .panel.panel-default.product-panel(ng-repeat="prod in products | orderBy:'id':true", id="product{{prod.id}}")
+      .panel-body.product-panel-body
+        img.prod-icon(ng-src="{{prod.img}}", alt="{{prod.name}}")
+        .prod-name {{ prod.name }}
+        .prod-issued {{ prod.issued | date:'HH:mm:ss &nbsp; dd.MM.yyyy' }}
+        .prod-price {{ prod.price | number : 2 }}
+        .prod-color {{ prod.color }}
+        .prod-in-stock {{ prod.in_stock }}
+        .prod-rating {{ prod.rating }}
+        // Del btn
+        button.btn.btn-success.order-prod-btn(ng-click="onOrderBtnClick(prod)")
+          i.fa.fa-check
+  .no-products-msg.text-xlarge.p1(ng-hide="products.length > 0") Нет продуктов

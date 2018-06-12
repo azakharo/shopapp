@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('projectsApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope, $http) {
     ///////////////////////////////////////////////////////
     // Filter
 
@@ -46,4 +46,25 @@ angular.module('projectsApp')
     ///////////////////////////////////////////////////////
 
 
+    //=====================================================
+    // Product list
+
+    $scope.products = [];
+
+    $scope.loadProducts = function (localPath) {
+      $http.get(localPath).then(
+        function (resp) {
+          $scope.products = resp.data;
+        },
+        function (err) {
+          console.log(err.message);
+          console.error(err);
+        }
+      );
+    };
+
+    $scope.loadProducts('assets/json/products.json');
+
+    // Product list
+    //=====================================================
   });

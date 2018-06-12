@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Флешка USB SILICON POWER Helios 101 32Гб, USB2.0, зеленый",
+    "color": "Green",
+    "issued": "2018-01-12T13:22:00.000Z",
+    "price": 590.00,
+    "rating": 4.5,
+    "in_stock": 0,
+    "img": "https://items.s2.citilink.ru/660025_v01_s.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Флешка USB SILICON POWER Ultima II-I Series 16Гб, USB2.0, черный",
+    "color": "Black",
+    "issued": "2018-01-21T12:00:00.000Z",
+    "price": 350.00,
+    "rating": 3.5,
+    "in_stock": 1,
+    "img": "https://items.s2.citilink.ru/662554_v01_s.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Флешка USB KINGSTON DataTraveler 32Гб, USB2.0, серебристый",
+    "color": "White",
+    "issued": "2018-02-07T12:00:00.000Z",
+    "price": 670.00,
+    "rating": 4.5,
+    "in_stock": 1,
+    "img": "https://items.s2.citilink.ru/354849_v01_s.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Флешка USB KINGSTON DataTraveler 100 G3 16Гб, USB3.0, черный",
+    "color": "Black",
+    "issued": "2018-02-15T12:00:00.000Z",
+    "price": 420.00,
+    "rating": 2.5,
+    "in_stock": 1,
+    "img": "https://items.s2.citilink.ru/783968_v01_s.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Флешка USB SILICON POWER Blaze B50 8Гб, USB3.0, красный",
+    "color": "Red",
+    "issued": "2018-03-05T12:00:00.000Z",
+    "price": 520.00,
+    "rating": 0,
+    "in_stock": 1,
+    "img": "https://items.s2.citilink.ru/1015232_v01_s.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Флешка USB CORSAIR Voyager Slider X2 256Гб, USB3.0, черный и голубой",
+    "color": "Blue",
+    "issued": "2018-04-01T12:00:00.000Z",
+    "price": 11540.00,
+    "rating": 0,
+    "in_stock": 1,
+    "img": "https://items.s2.citilink.ru/1064341_v01_s.jpg"
+  }
+]
