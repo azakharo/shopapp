@@ -19,7 +19,8 @@
         .prod-filter-row
           .prod-filter-col
             // Date From
-            p.input-group.datepicker-group
+            label Issued after:
+            p.input-group.filter-input
               input.form-control(type='text', uib-datepicker-popup='{{datepickerInputFrmt}}', ng-model='filterDtFrom',
               is-open='isFilterDtFromOpened', datepicker-options='datepickerOpts')
               span.input-group-btn
@@ -27,21 +28,28 @@
                   i.fa.fa-calendar
           .prod-filter-col
             // Date To
-            p.input-group.datepicker-group
+            label Issued before:
+            p.input-group.filter-input
               input.form-control(type='text', uib-datepicker-popup='{{datepickerInputFrmt}}', ng-model='filterDtTo',
               is-open='isFilterDtToOpened', datepicker-options='datepickerOpts')
               span.input-group-btn
                 button.btn.btn-default(type='button', ng-click='openFilterDtTo()')
                   i.fa.fa-calendar
           .prod-filter-col
-            span ha-ha
+            .checkbox
+              label Check me out
+                input(type='checkbox' ng-model="showInStockOnly")
 
         // 2nd line
         .prod-filter-row
           .prod-filter-col
-            span ha-ha2
+            // Min Price
+            label Price Min:
+            input.form-control.filter-input(type='number' min="0.00" step="0.01" ng-model="priceMin")
           .prod-filter-col
-            span ha-ha2
+            // Max Price
+            label Price Max:
+            input.form-control.filter-input(type='number' min="0.00" step="0.01" ng-model="priceMax")
           .prod-filter-col
             span ha-ha2
 

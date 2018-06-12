@@ -25,6 +25,11 @@ angular.module('projectsApp')
       $scope.isFilterDtToOpened = true;
     };
 
+    $scope.showInStockOnly = false;
+
+    $scope.priceMin = null;
+    $scope.priceMax = null;
+
     // Filter
     ///////////////////////////////////////////////////////
 
