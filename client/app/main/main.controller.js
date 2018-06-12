@@ -65,6 +65,10 @@ angular.module('projectsApp')
 
     $scope.loadProducts('assets/json/products.json');
 
+    $scope.onBuyBtnClick = function (prod) {
+      console.log('buy');
+    }
+
     // Product list
     //=====================================================
   });

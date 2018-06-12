@@ -57,16 +57,20 @@
 
   // Product list
   .product-list-section.p1(ng-show="products && products.length > 0")
-    .panel.panel-default.product-panel(ng-repeat="prod in products | orderBy:'id':true", id="product{{prod.id}}")
-      .panel-body.product-panel-body
-        img.prod-icon(ng-src="{{prod.img}}", alt="{{prod.name}}")
-        .prod-name {{ prod.name }}
-        .prod-issued {{ prod.issued | date:'HH:mm:ss &nbsp; dd.MM.yyyy' }}
-        .prod-price {{ prod.price | number : 2 }}
-        .prod-color {{ prod.color }}
-        .prod-in-stock {{ prod.in_stock }}
-        .prod-rating {{ prod.rating }}
-        // Del btn
-        button.btn.btn-success.order-prod-btn(ng-click="onOrderBtnClick(prod)")
-          i.fa.fa-check
+    .panel.panel-default(ng-repeat="prod in products | orderBy:'id':true", id="product{{prod.id}}")
+      .panel-body
+        .prod-card
+          .prod-icon
+            img(ng-src="{{prod.img}}", alt="{{prod.name}}")
+          .prod-name {{ prod.name }}
+          .prod-price {{ prod.price | number : 2 }}
+          .prod-issued Issued: {{ prod.issued | date:'HH:mm:ss &nbsp; dd.MM.yyyy' }}
+          .prod-in-stock {{ prod.in_stock }}
+          .buy-btn-wrapper
+            // Del btn
+            button.btn.btn-primary.order-prod-btn(ng-click="onBuyBtnClick(prod)")
+              i.fa.fa-shopping-cart
+              | &nbsp;&nbsp;Buy
+          .prod-rating {{ prod.rating }}
+          .prod-color {{ prod.color }}
   .no-products-msg.text-xlarge.p1(ng-hide="products.length > 0") Нет продуктов

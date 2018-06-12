@@ -73,12 +73,27 @@
 .product-list-section {
   flex: 1 1 0px;
   overflow-y: auto;
+}
 
-  background-color: lightgreen;
+@media (min-width: 768px) {
+  .prod-card {
+    display: grid;
+    grid-column-gap: 1rem;
+    grid-template-columns: 10rem repeat(3, 1fr);
+    grid-template-rows: repeat(3, 3rem);
+  }
 }
 
 .prod-icon {
-  width: 10rem;
+  grid-row: span 2;
+
+  img {
+    height: 6rem;
+  }
+}
+
+.prod-name {
+  grid-column: span 2;
 }
 
 // Product list
