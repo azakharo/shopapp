@@ -30,6 +30,18 @@ angular.module('projectsApp')
     $scope.priceMin = null;
     $scope.priceMax = null;
 
+    // Color filter
+    $scope.colorOptions = [
+      {name: 'Any'},
+      {name: 'Red'},
+      {name: 'White'},
+      {name: 'Black'},
+      {name: 'Blue'},
+      {name: 'Yellow'},
+      {name: 'Green'}
+    ];
+    $scope.color = $scope.colorOptions[0];
+
     // Filter
     ///////////////////////////////////////////////////////
 

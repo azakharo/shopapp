@@ -8,7 +8,6 @@
     .container
       h1 Welcome to our new shop!
       p.lead Here you can find all you need!
-      img.banner-img(src='assets/images/yeoman.png', alt='I am Yeoman')
 
   // Filter section
   .filter-section.p1
@@ -51,7 +50,10 @@
             label Price Max:
             input.form-control.filter-input(type='number' min="0.00" step="0.01" ng-model="priceMax")
           .prod-filter-col
-            span ha-ha2
+            // Max Price
+            label Color:
+            select.form-control.filter-input(ng-model='color',
+            ng-options='opt.name for opt in colorOptions')
 
   // Product list
   .product-list-section.p1
