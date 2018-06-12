@@ -12,12 +12,13 @@
 //Banner
 
 .my-banner {
-    border-bottom: none;
-    margin-top: -20px;
-}
-
-.my-banner {
+  border-bottom: none;
   line-height: 1;
+  position: relative;
+  color: #F5F5F5;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  background: #4393B9;
 
   .banner-title {
     font-size: 30px;
@@ -28,12 +29,10 @@
   }
 }
 
-.hero-unit {
-    position: relative;
-    color: #F5F5F5;
-    text-align: center;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-    background: #4393B9;
+@media (max-width: 768px) {
+  .my-banner {
+    display: none;
+  }
 }
 
 //Banner
