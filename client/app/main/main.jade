@@ -63,12 +63,15 @@
           .prod-icon
             img(ng-src="{{prod.img}}", alt="{{prod.name}}")
           .prod-name {{ prod.name }}
-          .prod-price {{ prod.price | number : 2 }}
-          .prod-issued Issued: {{ prod.issued | date:'HH:mm:ss &nbsp; dd.MM.yyyy' }}
-          .prod-in-stock {{ prod.in_stock }}
+          .prod-price {{ prod.price | currency }}
+          .prod-issued
+            span.issued Issued:
+            | {{ prod.issued | date }}
+          .prod-in-stock
+            span.no-in-stock(ng-show="!prod.in_stock") Нет в наличии
           .buy-btn-wrapper
             // Del btn
-            button.btn.btn-primary.order-prod-btn(ng-click="onBuyBtnClick(prod)")
+            button.btn.btn-primary.order-prod-btn(ng-click="onBuyBtnClick(prod)" ng-disabled="!prod.in_stock")
               i.fa.fa-shopping-cart
               | &nbsp;&nbsp;Buy
           .prod-rating {{ prod.rating }}

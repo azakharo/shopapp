@@ -83,17 +83,44 @@
   }
 }
 
-.prod-icon {
-  grid-row: span 3;
+.prod-card {
+  .prod-icon {
+    grid-row: span 3;
 
-  img {
-    max-width: 9rem;
-    max-height: 9rem;
+    img {
+      max-width: 9rem;
+      max-height: 9rem;
+    }
   }
-}
 
-.prod-name {
-  grid-column: span 2;
+  .prod-name {
+    grid-column: span 2;
+    font-size: larger;
+    color: slateblue;
+
+    // Text overflow - dots
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .prod-price {
+    font-size: larger;
+    font-weight: bold;
+  }
+
+  .issued {
+    font-weight: bold;
+    margin-right: 1rem;
+  }
+
+  .prod-in-stock {
+    justify-self: right;
+  }
+
+  .no-in-stock {
+    color: indianred;
+  }
 }
 
 // Product list
