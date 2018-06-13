@@ -86,6 +86,16 @@ angular.module('projectsApp')
       return true;
     };
 
+    $scope.areNoProducts = function () {
+      var prods = $scope.products;
+      if (!prods || prods.length === 0) {
+        return false;
+      }
+
+      var filteredProds = _.filter(prods, $scope.filterProd);
+      return filteredProds.length === 0;
+    };
+
     // Filter
     ///////////////////////////////////////////////////////
 
