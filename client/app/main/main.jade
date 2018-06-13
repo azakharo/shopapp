@@ -65,7 +65,7 @@
           .prod-name {{ prod.name }}
           .prod-price {{ prod.price | currency }}
           .prod-issued
-            span.issued Issued:
+            span.field-label Issued:
             | {{ prod.issued | date }}
           .prod-in-stock
             span.no-in-stock(ng-show="!prod.in_stock") Нет в наличии
@@ -75,5 +75,7 @@
               i.fa.fa-shopping-cart
               | &nbsp;&nbsp;Buy
           .prod-rating {{ prod.rating }}
-          .prod-color {{ prod.color }}
+          .prod-color
+            span.field-label Color:
+            | {{ prod.color }}
   .no-products-msg.text-xlarge.p1(ng-hide="products.length > 0") Нет продуктов
