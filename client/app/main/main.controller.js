@@ -67,7 +67,8 @@ angular.module('projectsApp')
 
     $scope.onBuyBtnClick = function (prod) {
       console.log('buy');
-    }
+      console.log(prod);
+    };
 
     // Product list
     //=====================================================

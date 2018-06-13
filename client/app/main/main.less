@@ -72,14 +72,29 @@
 .product-list-section {
   flex: 1 1 0px;
   overflow-y: auto;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 @media (min-width: 768px) {
   .prod-card {
     display: grid;
     grid-column-gap: 2rem;
-    grid-template-columns: 10rem auto auto 1fr;
+    grid-template-columns: 10rem repeat(3, 1fr);
     grid-template-rows: repeat(3, 3rem);
+    align-items: center;
+
+    .prod-name {
+      grid-column: span 2;
+      font-size: larger;
+      color: slateblue;
+
+      // Text overflow - dots
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
   }
 }
 
@@ -97,11 +112,6 @@
     grid-column: span 2;
     font-size: larger;
     color: slateblue;
-
-    // Text overflow - dots
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
   }
 
   .prod-price {
