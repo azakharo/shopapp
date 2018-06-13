@@ -57,7 +57,7 @@
 
   // Product list
   .product-list-section.p1(ng-show="products && products.length > 0")
-    .panel.panel-default(ng-repeat="prod in products | orderBy:'id':true", id="product{{prod.id}}")
+    .panel.panel-default(ng-repeat="prod in products | filter:filterProd | orderBy:'id':true", id="product{{prod.id}}")
       .panel-body
         .prod-card
           .prod-icon

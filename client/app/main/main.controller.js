@@ -42,6 +42,50 @@ angular.module('projectsApp')
     ];
     $scope.color = $scope.colorOptions[0];
 
+    $scope.filterProd = function(prod) {
+      if (!prod) {
+        return false;
+      }
+
+      if ($scope.showInStockOnly) {
+        if (!prod.in_stock) {
+          return false;
+        }
+      }
+
+      if ($scope.priceMin) {
+        if (prod.price < $scope.priceMin) {
+          return false;
+        }
+      }
+
+      if ($scope.priceMax) {
+        if (prod.price > $scope.priceMax) {
+          return false;
+        }
+      }
+
+      if ($scope.color && $scope.color.name !== 'Any') {
+        if (prod.color !== $scope.color.name) {
+          return false;
+        }
+      }
+
+      if ($scope.filterDtFrom && prod.issued) {
+        if (prod.issued.getTime() < $scope.filterDtFrom.getTime()) {
+          return false;
+        }
+      }
+
+      if ($scope.filterDtTo && prod.issued) {
+        if (prod.issued.getTime() > $scope.filterDtTo.getTime()) {
+          return false;
+        }
+      }
+
+      return true;
+    };
+
     // Filter
     ///////////////////////////////////////////////////////
 
@@ -54,7 +98,11 @@ angular.module('projectsApp')
     $scope.loadProducts = function (localPath) {
       $http.get(localPath).then(
         function (resp) {
-          $scope.products = resp.data;
+          var prods = resp.data;
+          prods.forEach(function (prod) {
+            prod.price = prod.price / 60.0;
+          });
+          $scope.products = prods;
         },
         function (err) {
           console.log(err.message);
