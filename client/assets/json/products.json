@@ -55,7 +55,7 @@
     "color": "Blue",
     "issued": "2018-04-01T12:00:00.000Z",
     "price": 11540.00,
-    "rating": 0,
+    "rating": 1.5,
     "in_stock": 1,
     "img": "https://items.s2.citilink.ru/1064341_v01_s.jpg"
   }

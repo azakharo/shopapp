@@ -11,6 +11,9 @@ angular.module('projectsApp')
     };
   })
   .controller('RatingCtrl', function ($scope) {
-    console.log('RatingCtrl');
-    console.log($scope);
+    var val = $scope.value;
+    $scope.fullStars = Math.floor(val);
+    var roundedVal = Math.round(val);
+    $scope.isHalfStar = roundedVal !== val;
+    $scope.range = _.range;
   });
