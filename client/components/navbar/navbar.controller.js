@@ -1,11 +1,13 @@
 'use strict';
 
 angular.module('projectsApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth) {
+  .controller('NavbarCtrl', function ($scope, $location, Auth, Cart) {
     $scope.menu = [{
       'title': 'Product List',
       'link': '/'
     }];
+
+    $scope.Cart = Cart;
 
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('projectsApp')
-  .controller('MainCtrl', function ($scope, $http) {
+  .controller('MainCtrl', function ($scope, $http, Cart) {
     ///////////////////////////////////////////////////////
     // Filter
 
@@ -124,8 +124,10 @@ angular.module('projectsApp')
     $scope.loadProducts('assets/json/products.json');
 
     $scope.onBuyBtnClick = function (prod) {
-      console.log('buy');
-      console.log(prod);
+      var addResult = Cart.add(prod);
+      if (!addResult) {
+        alert('This is a sample application. So, you can buy only 1 instance of product.');
+      }
     };
 
     // Product list
