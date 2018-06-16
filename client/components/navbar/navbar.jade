@@ -36,14 +36,16 @@ nav.navbar.navbar-default.navbar-override(ng-controller='NavbarCtrl')
               span.cart-items-count(ng-show="Cart.getCount() === 1") item
               span.cart-items-count(ng-show="Cart.getCount() > 1") items
               span.caret
-            ul.dropdown-menu.pr1
+            ul.dropdown-menu.plr1
               li(ng-repeat="prod in Cart.getItems()")
-                a(href='#')
-                  img(ng-src="{{prod.img}}", alt="{{prod.name}}")
-                  span.prod-name {{ prod.name }}
+                .prod-line
+                  .prod-icon
+                    img(ng-src="{{prod.img}}", alt="{{prod.name}}")
+                  .prod-name.nowrap {{ prod.name }}
                   // Del btn
-                  button.btn-xs.btn-danger(ng-click="onDelBtnClick(prod); $event.stopPropagation();")
-                    i.fa.fa-remove
+                  .prod-btn
+                    button.btn-xs.btn-danger(ng-click="onDelBtnClick(prod); $event.stopPropagation();")
+                      i.fa.fa-remove
               li.divider(role='separator', ng-show="Cart.getCount() > 1")
               li(ng-show="Cart.getCount() > 1")
                 a(href='#', ng-click="onClearAllBtnClick()") Clear all
