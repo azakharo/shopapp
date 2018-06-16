@@ -29,7 +29,7 @@ angular.module('projectsApp')
     function rem(prod) {
       _.remove(cart, function (p) {
         return p === prod;
-      })
+      });
     }
 
     function clear() {

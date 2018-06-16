@@ -75,7 +75,8 @@
             button.btn.btn-primary.order-prod-btn(ng-click="onBuyBtnClick(prod)" ng-disabled="!prod.in_stock")
               i.fa.fa-shopping-cart
               | &nbsp;&nbsp;Buy
-          .prod-rating {{ prod.rating }}
+          .prod-rating
+            rating(value="prod.rating")
           .prod-color
             span.field-label Color:
             | {{ prod.color }}
