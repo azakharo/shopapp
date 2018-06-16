@@ -48,7 +48,7 @@ angular.module('projectsApp')
       }
 
       if ($scope.showInStockOnly) {
-        if (!prod.in_stock) {
+        if (!prod.in_stock) { // jshint ignore:line
           return false;
         }
       }
