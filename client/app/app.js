@@ -5,7 +5,6 @@ var APP_VERSION = 'unknown'; // jshint ignore:line
 angular.module('projectsApp', [
   'ngCookies',
   'ngSanitize',
-  'btford.socket-io',
   'ui.router',
   'ui.bootstrap'
 ])

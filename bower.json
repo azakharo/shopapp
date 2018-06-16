@@ -9,7 +9,6 @@
     "angular-bootstrap": "2.5.0",
     "font-awesome": "4.7.0",
     "lodash": "4.16.6",
-    "angular-socket-io": "0.6.1",
     "angular-ui-router": "0.2.18"
   },
   "devDependencies": {}
