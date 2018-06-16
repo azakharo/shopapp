@@ -30,7 +30,7 @@ nav.navbar.navbar-default.navbar-override(ng-controller='NavbarCtrl')
         li(ng-show='isLoggedIn() && Cart.getCount() > 0')
           .navbar-text
             span.bold Cart:&nbsp;
-            span &nbsp;{{ Cart.getCount() }} items
+            span.cart-items-count &nbsp;{{ Cart.getCount() }} items
 
         li(ng-show='isLoggedIn()')
           p.navbar-text.bold {{ getCurrentUser().name }}

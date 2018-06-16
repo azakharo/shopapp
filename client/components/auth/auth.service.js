@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('projectsApp')
-  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q) {
+  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q, Cart) {
     var currentUser = {};
     if ($cookieStore.get('token')) {
       User.get().then(function(user) {
@@ -17,6 +17,7 @@ angular.module('projectsApp')
     function logout() {
       $cookieStore.remove('token');
       currentUser = {};
+      Cart.clear();
     }
 
     /**
