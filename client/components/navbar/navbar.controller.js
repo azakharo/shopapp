@@ -21,4 +21,13 @@ angular.module('projectsApp')
     $scope.isActive = function(route) {
       return route === $location.path();
     };
+
+    $scope.onDelBtnClick = function(prod) {
+      Cart.rem(prod);
+    };
+
+    $scope.onClearAllBtnClick = function() {
+      Cart.clear();
+    };
+
   });

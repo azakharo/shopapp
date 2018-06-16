@@ -2,7 +2,7 @@ nav.navbar.navbar-default.navbar-override(ng-controller='NavbarCtrl')
   .container-fluid
     .navbar-header
       button.navbar-toggle.collapsed(
-      type='button', data-toggle='collapse', data-target='#navbar-main', aria-expanded='false')
+      type='button', data-toggle='collapse', data-target='.navbar-main', aria-expanded='false')
         span.sr-only Navigation menu
         span.icon-bar
         span.icon-bar
@@ -11,7 +11,7 @@ nav.navbar.navbar-default.navbar-override(ng-controller='NavbarCtrl')
         i.fa.fa-shopping-cart.fa-lg
         span.ml1 Example Shopping Application
 
-    #navbar-main.collapse.navbar-collapse
+    .navbar-main.collapse.navbar-collapse
       ul.nav.navbar-nav(ng-show='isLoggedIn()')
         li(ng-repeat='item in menu', ng-class='{active: isActive(item.link)}')
           a(ng-href='{{item.link}}') {{item.title}}
@@ -27,10 +27,26 @@ nav.navbar.navbar-default.navbar-override(ng-controller='NavbarCtrl')
           a(href='/login') Login
 
         // Cart
-        li(ng-show='isLoggedIn() && Cart.getCount() > 0')
-          .navbar-text
+        li(ng-show='isLoggedIn() && Cart.getCount() > 0').navbar-text
+          .dropdown
             span.bold Cart:&nbsp;
-            span.cart-items-count &nbsp;{{ Cart.getCount() }} items
+            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true',
+            aria-expanded='false')
+              span.cart-items-count &nbsp;{{ Cart.getCount() }}&nbsp;
+              span.cart-items-count(ng-show="Cart.getCount() === 1") item
+              span.cart-items-count(ng-show="Cart.getCount() > 1") items
+              span.caret
+            ul.dropdown-menu.pr1
+              li(ng-repeat="prod in Cart.getItems()")
+                a(href='#')
+                  img(ng-src="{{prod.img}}", alt="{{prod.name}}")
+                  span.prod-name {{ prod.name }}
+                  // Del btn
+                  button.btn-xs.btn-danger(ng-click="onDelBtnClick(prod); $event.stopPropagation();")
+                    i.fa.fa-remove
+              li.divider(role='separator', ng-show="Cart.getCount() > 1")
+              li(ng-show="Cart.getCount() > 1")
+                a(href='#', ng-click="onClearAllBtnClick()") Clear all
 
         li(ng-show='isLoggedIn()')
           p.navbar-text.bold {{ getCurrentUser().name }}

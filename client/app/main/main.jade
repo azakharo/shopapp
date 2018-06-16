@@ -71,7 +71,7 @@
           .prod-in-stock
             span.no-in-stock(ng-show="!prod.in_stock") Нет в наличии
           .buy-btn-wrapper
-            // Del btn
+            // Buy btn
             button.btn.btn-primary.order-prod-btn(ng-click="onBuyBtnClick(prod)" ng-disabled="!prod.in_stock")
               i.fa.fa-shopping-cart
               | &nbsp;&nbsp;Buy
