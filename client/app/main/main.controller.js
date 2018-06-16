@@ -126,7 +126,7 @@ angular.module('projectsApp')
     $scope.onBuyBtnClick = function (prod) {
       var addResult = Cart.add(prod);
       if (!addResult) {
-        alert('This is a sample application. So, you can buy only 1 instance of product.');
+        alert('This is a sample application. So, you can buy only 1 instance of any product.');
       }
     };
 
