@@ -3,31 +3,10 @@
   "version": "1.0.0",
   "main": "server/app.js",
   "dependencies": {
-    "body-parser": "1.18.2",
-    "composable-middleware": "0.3.0",
-    "compression": "1.7.1",
-    "connect-mongo": "2.0.1",
-    "cookie-parser": "1.4.3",
-    "cors": "2.8.4",
     "express": "4.16.2",
-    "express-jwt": "5.3.0",
-    "express-session": "1.15.6",
-    "jsonwebtoken": "8.1.0",
     "lodash": "4.17.4",
-    "mongoose": "4.13.8",
     "morgan": "1.9.0",
-    "passport": "0.4.0",
-    "passport-facebook": "2.1.1",
-    "passport-google-oauth": "1.0.0",
-    "passport-local": "1.0.0",
-    "passport-twitter": "1.0.4",
-    "serve-favicon": "2.4.5",
-    "socket.io": "2.0.4",
-    "socket.io-client": "2.0.4",
-    "socketio-jwt": "4.5.0",
-    "swagger-tools": "0.10.3",
-    "swagger-ui": "3.9.0",
-    "yamljs": "0.3.0"
+    "serve-favicon": "2.4.5"
   },
   "devDependencies": {
     "chai": "4.1.2",
@@ -65,7 +44,7 @@
     "uglify-es": "3.3.4"
   },
   "engines": {
-    "node": "8.9.3"
+    "node": "8.11.2"
   },
   "scripts": {
     "start": "node server/app.js",
