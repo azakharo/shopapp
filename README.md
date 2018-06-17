@@ -1,7 +1,6 @@
 ﻿# Prerequisites
 
   * Node.js (recommended 8.x).
-  * MongoDB (recommended 3.x).
   * npm install -g bower grunt-cli
 
 
