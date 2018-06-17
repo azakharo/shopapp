@@ -59,7 +59,7 @@ angular.module('projectsApp')
     var token = $cookieStore.get('token');
     if (token) {
       currentUser = _.find(users, function (u) {
-        return u.password === token;
+        return _createToken(u.email, u.password) === token;
       });
     }
 
@@ -95,7 +95,7 @@ angular.module('projectsApp')
         return deferred.promise;
       }
 
-      $cookieStore.put('token', passwdHash);
+      $cookieStore.put('token', _createToken(user.email, user.password));
       currentUser = user;
       deferred.resolve(user);
 
@@ -131,7 +131,7 @@ angular.module('projectsApp')
         password: passwdHash
       };
       users.push(newUser);
-      $cookieStore.put('token', passwdHash);
+      $cookieStore.put('token', _createToken(newUser.email, newUser.password));
       currentUser = newUser;
       _saveUsers();
       deferred.resolve(newUser);
@@ -196,6 +196,10 @@ angular.module('projectsApp')
         hash |= 0; // jshint ignore:line
       }
       return hash;
+    }
+
+    function _createToken(email, passwdHash) {
+      return _createHashCode(email + passwdHash);
     }
 
     return {
