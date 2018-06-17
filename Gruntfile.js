@@ -95,7 +95,8 @@ module.exports = function (grunt) {
 
           '!<%= yeoman.client %>/{app,components}/**/*.spec.js',
           '!<%= yeoman.client %>/{app,components}/**/*.mock.js',
-          '<%= yeoman.client %>/assets/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}'
+          '<%= yeoman.client %>/assets/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}',
+          '<%= yeoman.client %>/assets/json/**/*.json'
         ],
         options: {
           livereload: true
@@ -268,6 +269,7 @@ module.exports = function (grunt) {
             'bower_components/font-awesome/fonts/*',
             'assets/fonts/**/*',
             'assets/images/*',
+            'assets/json/*',
             'components/**/*.{png,jpg,jpeg,gif,svg}',
             'index.html'
           ]
@@ -478,16 +480,16 @@ module.exports = function (grunt) {
     },
 
     shell: {
-      mocha: {
-        command: 'mocha --exit server/**/*.spec.js',
-        options: {
-          execOptions: {
-            env: {
-              'NODE_ENV': 'test'
-            }
-          }
-        }
-      },
+      // mocha: {
+      //   command: 'mocha --exit server/**/*.spec.js',
+      //   options: {
+      //     execOptions: {
+      //       env: {
+      //         'NODE_ENV': 'test'
+      //       }
+      //     }
+      //   }
+      // },
       uglifyAppJs: {
         command: 'node node_modules/uglify-es/bin/uglifyjs dist/public/app/app.js --compress -o dist/public/app/app.js'
       },
@@ -562,7 +564,7 @@ module.exports = function (grunt) {
   grunt.registerTask('common-build', function () {
     grunt.task.run([
       'lint-js',
-      'shell:mocha',
+      // 'shell:mocha',
       'clean:dist',
       'gitinfo',
       'injector:less',
