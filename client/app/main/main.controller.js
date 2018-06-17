@@ -111,6 +111,7 @@ angular.module('projectsApp')
           var prods = resp.data;
           prods.forEach(function (prod) {
             prod.price = prod.price / 60.0;
+            prod.issued = new Date(prod.issued);
           });
           $scope.products = prods;
         },
