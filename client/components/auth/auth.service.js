@@ -2,20 +2,58 @@
 
 angular.module('projectsApp')
   .factory('Auth', function Auth($location, $rootScope, $cookieStore, $q, Cart) {
-    var users = [
-      {
-        name: 'Tester',
-        role: 'user',
-        email: 'test@test.com',
-        password: 3556498
-      },
-      {
-        name: 'Admin',
-        role: 'admin',
-        email: 'admin@admin.com',
-        password: 92668751
+    var users = [];
+
+
+    ////////////////////////////////////////////////////////////
+    // User persistence
+
+    var STORAGE_KEY__USERS = 'users';
+
+    function _loadUsers() {
+      var storage = window.localStorage;
+      if (storage) {
+        var data = storage.getItem(STORAGE_KEY__USERS);
+        if (data) {
+          users = JSON.parse(data);
+        }
+        else {
+          // Set builtin users
+          users = [
+            {
+              name: 'Tester',
+              role: 'user',
+              email: 'test@test.com',
+              password: 3556498
+            },
+            {
+              name: 'Admin',
+              role: 'admin',
+              email: 'admin@admin.com',
+              password: 92668751
+            }
+          ];
+
+          _saveUsers();
+        }
       }
-    ];
+
+    }
+
+    function _saveUsers() {
+      var storage = window.localStorage;
+      if (storage) {
+        var data = JSON.stringify(users);
+        storage.setItem(STORAGE_KEY__USERS, data);
+      }
+    }
+
+    _loadUsers();
+
+    // User persistence
+    ////////////////////////////////////////////////////////////
+
+
     var currentUser = {};
 
     var token = $cookieStore.get('token');
@@ -95,6 +133,7 @@ angular.module('projectsApp')
       users.push(newUser);
       $cookieStore.put('token', passwdHash);
       currentUser = newUser;
+      _saveUsers();
       deferred.resolve(newUser);
 
       return deferred.promise;

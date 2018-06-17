@@ -9,17 +9,18 @@ angular.module('projectsApp')
     $scope.register = function (form) {
       if (form.$valid) {
         Auth.createUser({
-            name: $scope.user.name,
-            email: $scope.user.email,
-            password: $scope.user.password
+          name: $scope.user.name,
+          email: $scope.user.email,
+          password: $scope.user.password
+        })
+        .then(
+          function () {
+            // Account created, redirect to home
+            $location.path('/');
           },
           function (err) {
             if (err) {
               $scope.requestError = err;
-            }
-            else {
-              // Account created, redirect to home
-              $location.path('/');
             }
           }
         );
