@@ -8,7 +8,7 @@ angular.module('projectsApp', [
   'ui.router',
   'ui.bootstrap'
 ])
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $urlRouterProvider
       .otherwise('/');
 
@@ -16,49 +16,6 @@ angular.module('projectsApp', [
       enabled: true,
       requireBase: true
     });
-    $httpProvider.interceptors.push('authInterceptor');
-
-    // $http response, convert string to dates
-    $httpProvider.defaults.transformResponse = function(data) {
-      try {
-        var object;
-        if (typeof data === 'object') {
-          object = data;
-        } else {
-          object = JSON.parse(data);
-        }
-        return deserializeDates(object); // jshint ignore:line
-      } catch(e) {
-        return data;
-      }
-    };
-
-  })
-
-  .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
-    return {
-      // Add authorization token to headers
-      request: function (config) {
-        config.headers = config.headers || {};
-        if ($cookieStore.get('token')) {
-          config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
-        }
-        return config;
-      },
-
-      // Intercept 401s and redirect you to login
-      responseError: function(response) {
-        if(response.status === 401) {
-          $location.path('/login');
-          // remove any stale tokens
-          $cookieStore.remove('token');
-          return $q.reject(response);
-        }
-        else {
-          return $q.reject(response);
-        }
-      }
-    };
   })
 
   .run(function ($rootScope, $location, Auth) {

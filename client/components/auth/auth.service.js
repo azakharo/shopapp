@@ -1,11 +1,27 @@
 'use strict';
 
 angular.module('projectsApp')
-  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q, Cart) {
+  .factory('Auth', function Auth($location, $rootScope, $cookieStore, $q, Cart) {
+    var users = [
+      {
+        name: 'Tester',
+        role: 'user',
+        email: 'test@test.com',
+        password: 'test'
+      },
+      {
+        name: 'Admin',
+        role: 'admin',
+        email: 'admin@admin.com',
+        password: 'admin'
+      }
+    ];
     var currentUser = {};
-    if ($cookieStore.get('token')) {
-      User.get().then(function(user) {
-        currentUser = user;
+
+    var token = $cookieStore.get('token');
+    if (token) {
+      currentUser = _.find(users, function (u) {
+        return u.password === token;
       });
     }
 
@@ -23,33 +39,26 @@ angular.module('projectsApp')
     /**
      * Authenticate user and save token
      *
-     * @param  {Object}   user     - login info
-     * @param  {Function} callback - optional
+     * @param  {Object} data - login info
      * @return {Promise}
      */
-    function login(user, callback) {
-      var cb = callback || angular.noop;
+    function login(data) {
       var deferred = $q.defer();
 
-      $http.post('/auth/local', {
-        email: user.email,
-        password: user.password
-      })
-      .success(function (data) {
-        $cookieStore.put('token', data.token);
-        User.get().then(
-          function (u) {
-            currentUser = u;
-            deferred.resolve(data);
-            return cb();
-          }
-        );
-      })
-      .error(function (err) {
+      var user = _.find(users, function (u) {
+        return u.email === data.email && u.password === data.password;
+      });
+
+      if (!user) {
+        var err = new Error('Wrong email or password');
         logout();
         deferred.reject(err);
-        return cb(err);
-      });
+        return deferred.promise;
+      }
+
+      $cookieStore.put('token', user.password);
+      currentUser = user;
+      deferred.resolve(user);
 
       return deferred.promise;
     }
@@ -58,36 +67,35 @@ angular.module('projectsApp')
      * Create a new user
      *
      * @param  {Object}   user     - user info
-     * @param  {Function} callback - optional
      * @return {Promise}
      */
-    function createUser(user, callback) {
-      var cb = callback || angular.noop;
+    function createUser(user) {
+      var deferred = $q.defer();
 
-      return User.create(user).then(
-        function (data) {
-          $cookieStore.put('token', data.token);
-          User.get().then(function (u) {
-            currentUser = u;
-            return cb(null, user);
-          });
-        },
-        function (err) {
-          return cb(err, null);
-        }
-      );
-    }
+      var existingUser = _.find(users, function (u) {
+        return u.email === user.email;
+      });
 
-    /**
-     * Change password
-     *
-     * @param  {String}   oldPassword
-     * @param  {String}   newPassword
-     * @param  {Function} callback    - optional
-     * @return {Promise}
-     */
-    function changePassword(oldPassword, newPassword) {
-      return User.changePassword(currentUser._id, oldPassword, newPassword);
+      if (existingUser) {
+        var err = new Error('User with specified email already exist');
+        logout();
+        deferred.reject(err);
+        return deferred.promise;
+      }
+
+      // Add new user
+      var newUser = {
+        name: user.name,
+        role: 'user',
+        email: user.email,
+        password: user.password
+      };
+      users.push(newUser);
+      $cookieStore.put('token', user.password);
+      currentUser = newUser;
+      deferred.resolve(newUser);
+
+      return deferred.promise;
     }
 
     /**
@@ -139,7 +147,6 @@ angular.module('projectsApp')
       login:            login,
       logout:           logout,
       createUser:       createUser,
-      changePassword:   changePassword,
       getCurrentUser:   getCurrentUser,
       isLoggedIn:       isLoggedIn,
       isLoggedInAsync:  isLoggedInAsync,
