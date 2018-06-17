@@ -7,13 +7,13 @@ angular.module('projectsApp')
         name: 'Tester',
         role: 'user',
         email: 'test@test.com',
-        password: 'test'
+        password: 3556498
       },
       {
         name: 'Admin',
         role: 'admin',
         email: 'admin@admin.com',
-        password: 'admin'
+        password: 92668751
       }
     ];
     var currentUser = {};
@@ -45,8 +45,9 @@ angular.module('projectsApp')
     function login(data) {
       var deferred = $q.defer();
 
+      var passwdHash = _createHashCode(data.password);
       var user = _.find(users, function (u) {
-        return u.email === data.email && u.password === data.password;
+        return u.email === data.email && u.password === passwdHash;
       });
 
       if (!user) {
@@ -56,7 +57,7 @@ angular.module('projectsApp')
         return deferred.promise;
       }
 
-      $cookieStore.put('token', user.password);
+      $cookieStore.put('token', passwdHash);
       currentUser = user;
       deferred.resolve(user);
 
@@ -66,14 +67,14 @@ angular.module('projectsApp')
     /**
      * Create a new user
      *
-     * @param  {Object}   user     - user info
+     * @param  {Object}   data     - user info
      * @return {Promise}
      */
-    function createUser(user) {
+    function createUser(data) {
       var deferred = $q.defer();
 
       var existingUser = _.find(users, function (u) {
-        return u.email === user.email;
+        return u.email === data.email;
       });
 
       if (existingUser) {
@@ -84,14 +85,15 @@ angular.module('projectsApp')
       }
 
       // Add new user
+      var passwdHash = _createHashCode(data.password);
       var newUser = {
-        name: user.name,
+        name: data.name,
         role: 'user',
-        email: user.email,
-        password: user.password
+        email: data.email,
+        password: passwdHash
       };
       users.push(newUser);
-      $cookieStore.put('token', user.password);
+      $cookieStore.put('token', passwdHash);
       currentUser = newUser;
       deferred.resolve(newUser);
 
@@ -141,6 +143,20 @@ angular.module('projectsApp')
      */
     function isAdmin() {
       return currentUser.role === 'admin';
+    }
+
+    function _createHashCode(s) {
+      var hash = 0, i, chr;
+      if (s.length === 0) {
+        return hash;
+      }
+      for (i = 0; i < s.length; i++) {
+        chr   = s.charCodeAt(i);
+        hash  = ((hash << 5) - hash) + chr; // jshint ignore:line
+        // Convert to 32bit integer
+        hash |= 0; // jshint ignore:line
+      }
+      return hash;
     }
 
     return {
